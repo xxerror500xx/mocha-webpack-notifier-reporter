@@ -1,5 +1,5 @@
 ## This is a Sample Reporter
-This is a very simple reporter that supports notifications via the node-notifier module.
+This is a very simple reporter that supports notifications via Webpack, Mocha, node-notifier.
 
 ## Customize your own Reporter
 Clone this project
