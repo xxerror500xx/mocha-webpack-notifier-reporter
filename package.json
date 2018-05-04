@@ -1,7 +1,7 @@
 {
-  "name": "mocha-notifier-reporter",
-  "version": "1.0.0",
-  "description": "A module for mocha that creates a notification popup with test results.",
+  "name": "mocha-webpack-notifier-reporter",
+  "version": "1.0.0-alpha",
+  "description": "A reporter for mocha using webpack that creates a notification popup with test results.",
   "main": "index.js",
   "private": true,
   "scripts": {

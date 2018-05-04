@@ -1,4 +1,4 @@
-var mocha = require('mocha');
+const mocha = require('mocha');
 const notifier = require('node-notifier');
 const path = require('path');
 const mochaIcon = path.join(__dirname, 'icons/mocha.svg');
