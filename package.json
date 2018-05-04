@@ -1,0 +1,21 @@
+{
+  "name": "mocha-notifier-reporter",
+  "version": "1.0.0",
+  "description": "A module for mocha that creates a notification popup with test results.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "Mocha",
+    "Reporter",
+    "Node",
+    "Notifier",
+    "Growl"
+  ],
+  "author": "Clifford Minks",
+  "license": "MIT",
+  "dependencies": {
+    "node-notifier": "^5.2.1"
+  }
+}
