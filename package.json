@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A module for mocha that creates a notification popup with test results.",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "test"
   },
