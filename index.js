@@ -1,4 +1,6 @@
 const mocha = require('mocha');
+var color = mocha.reporters.Base.color;
+var cursor = mocha.reporters.Base.cursor;
 const notifier = require('node-notifier');
 const path = require('path');
 const mochaIcon = path.join(__dirname, 'icons/mocha.svg');
@@ -13,23 +15,38 @@ notifier.notify({
   icon: mochaIcon
 });
 function MyReporter(runner) {
-  console.log('in mocha-notifier-reporter.js');
+  console.log('in mocha-webpack-notifier-reporter.js');
   mocha.reporters.Base.call(this, runner);
   var passed = 0;
   var failed = 0;
   var total = 0;
+  runner.on('test', function(test) {
+    process.stdout.write(color('pass', '    ' + test.fullTitle() + ': '));
+  });
 
+  runner.on('pending', function(test) {
+    var fmt = color('checkmark', '  -') + color('pending', ' %s');
+    console.log(fmt, test.fullTitle());
+  });
   runner.on('pass', function(test){
     passed++;
+    var fmt =
+    color('checkmark', '  ' + mocha.reporters.Base.symbols.ok) +
+    color('pass', ' %s: ') +
+    color(test.speed, '%dms');
+    cursor.CR();
+    console.log(fmt, test.fullTitle(), test.duration);
     // console.log('pass: %s', test.fullTitle());
   });
 
   runner.on('fail', function(test, err){
     failed++;
-    console.log('Fail: %s -- error: %s', test.fullTitle(), err.message);
+    cursor.CR();
+    console.log(color('fail', '  %d) %s'), failed++, test.fullTitle());
+    // console.log('Fail: %s -- error: %s', test.fullTitle(), err.message);
     notifier.notify({
-      title: test.fullTitle(),
-      message: err.message,
+      title: 'Test:' + test.fullTitle(),
+      message: 'err:' + err.message,
       icon: errorIcon
     });
   });
@@ -41,7 +58,7 @@ function MyReporter(runner) {
     }
 
     total = passed + failed;
-    console.log('end: %d/%d', passed, total);
+    console.log('Fail/Pass/Total: %d/%d/%d', failed, passed, total);
     notifier.notify({
       title: 'Test Results',
       message: ' Failed: ' + failed + ' | Pass: ' + passed + ' | Total: '+ total,
