@@ -43,7 +43,6 @@ function MyReporter(runner) {
     failed++;
     cursor.CR();
     console.log(color('fail', '  %d) %s'), failed++, test.fullTitle());
-    // console.log('Fail: %s -- error: %s', test.fullTitle(), err.message);
     notifier.notify({
       title: 'Test:' + test.fullTitle(),
       message: 'err:' + err.message,
@@ -51,7 +50,7 @@ function MyReporter(runner) {
     });
   });
 
-  runner.on('end', function(){
+  runner.on('end', function(test){
     var iconType = okIcon;
     if (failed > 0) {
       iconType = errorIcon;
@@ -61,7 +60,7 @@ function MyReporter(runner) {
     console.log('Fail/Pass/Total: %d/%d/%d', failed, passed, total);
     notifier.notify({
       title: 'Test Results',
-      message: ' Failed: ' + failed + ' | Pass: ' + passed + ' | Total: '+ total,
+      message: ' Failed: ' + failed + ' | Pass: ' + passed + ' | Total: ' + total,
       icon: iconType
     });
     notifier.notify({

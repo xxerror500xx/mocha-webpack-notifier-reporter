@@ -3,7 +3,7 @@
   "version": "1.0.0-alpha",
   "description": "A reporter for mocha using webpack that creates a notification popup with test results.",
   "main": "index.js",
-  "private": true,
+  "private": false,
   "scripts": {
     "test": "test"
   },
